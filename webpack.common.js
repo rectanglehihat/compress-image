@@ -3,8 +3,7 @@ const postcssPresetEnv = require('postcss-preset-env');
 
 module.exports = {
   entry: {
-    main: './src/index.js',
-    // main: './index.ts',
+    main: './src/index.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

@@ -1,5 +1,7 @@
 # compress-image
 
+이미지 파일 전송 시 파일 압축을 위한 라이브러리
+
 
 ## setting
 ### Eslint
@@ -132,3 +134,4 @@
   - `@babel/preset-typescript`: Babel에서 ts 파일을 js로 변환하고 구버전으로 트랜스파일링 진행. TypeScript 코드를 JavaScript로 변환하는 플러그인
 
 <br/>
+

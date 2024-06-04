@@ -18,8 +18,7 @@ const App = ({
   accept = 'image/*',
 }: AppProps) => {
   const [previewImage, setPreviewImage] = useState<string>('');
-  const [fileSize, setFileSize] = useState({ origin: 0, compress: 0 });
-  const $inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const onChangeFileInput = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
@@ -28,21 +27,22 @@ const App = ({
     try {
       const { resizedImage, fileSize } = await compress(file, quality, type);
       setPreviewImage(resizedImage);
-      setFileSize(fileSize);
+      console.log('기존 용량', fileSize.origin);
+      console.log('압축 용량', fileSize.compress);
     } catch (error) {
       console.error('Error compressing image:', error);
     }
   };
 
   const onClickUploadButton = () => {
-    $inputRef.current?.click();
+    inputRef.current?.click();
   };
 
   return (
     <>
       <input
         className="file-input"
-        ref={$inputRef}
+        ref={inputRef}
         type="file"
         accept={accept}
         onChange={onChangeFileInput}
@@ -58,8 +58,6 @@ const App = ({
           alt="preview-image"
         />
       )}
-      <div className="origin-size">기존 용량: {fileSize.origin}</div>
-      <div className="compress-size">압축 용량: {fileSize.compress}</div>
     </>
   );
 };

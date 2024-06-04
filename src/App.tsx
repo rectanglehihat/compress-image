@@ -8,6 +8,7 @@ interface AppProps {
   type?: string;
   style?: string;
   accept?: string;
+  children?: React.ReactNode;
 }
 
 const App = ({
@@ -16,6 +17,7 @@ const App = ({
   quality = 0.7,
   type = 'jpeg',
   accept = 'image/*',
+  children,
 }: AppProps) => {
   const [previewImage, setPreviewImage] = useState<string>('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -48,16 +50,19 @@ const App = ({
         onChange={onChangeFileInput}
       />
       <button className="upload-button" onClick={onClickUploadButton}>
-        Upload File
+        {previewImage ? (
+          <img
+            className="preview-image"
+            style={{ width: `${width}px`, height: `${height}px` }}
+            src={previewImage}
+            alt="preview-image"
+          />
+        ) : children ? (
+          children
+        ) : (
+          'Upload File'
+        )}
       </button>
-      {previewImage && (
-        <img
-          className="preview-image"
-          style={{ width: `${width}px`, height: `${height}px` }}
-          src={previewImage}
-          alt="preview-image"
-        />
-      )}
     </>
   );
 };

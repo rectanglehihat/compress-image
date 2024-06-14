@@ -29,8 +29,7 @@ const App = ({
     try {
       const { resizedImage, fileSize } = await compress(file, quality, type);
       setPreviewImage(resizedImage);
-      console.log('기존 용량', fileSize.origin);
-      console.log('압축 용량', fileSize.compress);
+      return fileSize;
     } catch (error) {
       console.error('Error compressing image:', error);
     }

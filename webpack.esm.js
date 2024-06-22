@@ -7,8 +7,12 @@ module.exports = {
     main: './src/index.tsx',
   },
   output: {
+    filename: 'index.mjs',
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js',
+    libraryTarget: 'module',
+  },
+  experiments: {
+    outputModule: true,
   },
   stats: {
     preset: 'minimal',

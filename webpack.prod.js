@@ -22,4 +22,7 @@ module.exports = {
   optimization: {
     minimizer: [new CssMinimizerPlugin()],
   },
+  externals: {
+    react: 'react',
+  },
 };

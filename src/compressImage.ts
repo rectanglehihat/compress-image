@@ -1,4 +1,4 @@
-const compress = (
+const compressImage = (
   file: File,
   quality: number,
   type: string,
@@ -49,4 +49,4 @@ const compress = (
   });
 };
 
-export default compress;
+export default compressImage;

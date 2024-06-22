@@ -1,18 +1,14 @@
 {
   "name": "compress-image-uploader",
-  "version": "1.0.0",
+  "version": "0.0.21",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "require": {
-        "types": "./index.d.ts",
-        "default": "./index.js"
-      },
-      "import": {
-        "types": "./index.d.mts",
-        "default": "./index.mjs"
-      }
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     }
   },
   "scripts": {
@@ -20,8 +16,11 @@
     "format": "prettier --write --cache .",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
-    "build": "webpack --mode production",
-    "dev": "webpack serve --open --mode development"
+    "dev": "webpack serve --open --mode development",
+    "prepack": "npm run build",
+    "build:cjs": "webpack --config webpack.config.js --mode production",
+    "build:esm": "webpack --config webpack.config.js --mode production --env esm",
+    "build": "tsc && npm run build:cjs && npm run build:esm"
   },
   "browserslist": {
     "production": [
@@ -38,11 +37,16 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "devDependencies": {
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
     "@babel/preset-react": "^7.24.6",
     "@babel/preset-typescript": "^7.24.1",
+    "@types/node": "^20.14.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.19",
@@ -64,14 +68,17 @@
     "sass": "^1.77.2",
     "sass-loader": "^14.2.1",
     "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.1",
     "typescript": "^5.4.5",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4",
-    "webpack-merge": "^5.10.0"
+    "webpack-merge": "^5.10.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   }
 }

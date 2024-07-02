@@ -3,6 +3,7 @@
 An image file uploader that has a preview image and a library capable of compressing images
 
 <h3>props</h3>
+
 |name|type|description|
 |:---:|:---:|:---|
 |quality|number|image quality|
